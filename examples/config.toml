@@ -1,0 +1,4 @@
+# JobLoom example configuration. Do not put passwords, cookies, or tokens here.
+[providers.linkedin_linked]
+executable = "linked"
+timeout_seconds = 20

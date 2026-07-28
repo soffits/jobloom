@@ -1,0 +1,73 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jobloom"
+version = "0.1.0"
+description = "Local-first, agent-friendly job discovery CLI."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "AGPL-3.0-only"
+authors = [{ name = "Sakina" }]
+keywords = ["jobs", "cli", "job-search", "agents"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: GNU Affero General Public License v3",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+  "platformdirs>=4.3,<5",
+  "python-jobspy>=1.1.82,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2,<2",
+  "pytest>=8.3,<9",
+  "pytest-cov>=5,<7",
+  "ruff>=0.8,<1",
+]
+
+[project.scripts]
+jobloom = "jobloom.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/soffits/jobloom"
+Documentation = "https://github.com/soffits/jobloom/tree/main/docs"
+Issues = "https://github.com/soffits/jobloom/issues"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src",
+  "/tests",
+  "/docs",
+  "/examples",
+  "/README.md",
+  "/LICENSE",
+  "/SECURITY.md",
+  "/CONTRIBUTING.md",
+  "/CHANGELOG.md",
+  "/SKILL.md",
+  "/scripts",
+  "/pyproject.toml",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/jobloom"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "C4", "ARG"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+addopts = "--cov=jobloom --cov-report=term-missing"
+testpaths = ["tests"]
