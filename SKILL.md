@@ -1,6 +1,6 @@
 ---
 name: jobloom
-description: Use when discovering jobs with JobLoom while keeping searches read-only, local-first, and safe for agents.
+description: Use when discovering jobs with the JobLoom CLI.
 version: 0.1.0
 author: Sakina
 license: AGPL-3.0-only
