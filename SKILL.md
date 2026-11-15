@@ -3,7 +3,7 @@ name: jobloom
 description: Use when discovering jobs with the JobLoom CLI.
 version: 0.1.0
 author: Sakina
-license: AGPL-3.0-only
+license: AGPL-3.0-or-later
 metadata:
   hermes:
     tags:

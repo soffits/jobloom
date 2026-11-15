@@ -59,4 +59,4 @@ JobLoom uses `python-jobspy` as a normal package dependency rather than vendorin
 
 ## License
 
-AGPL-3.0-only. See `LICENSE`.
+AGPL-3.0-or-later. See `LICENSE`.
