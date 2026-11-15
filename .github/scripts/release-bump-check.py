@@ -17,9 +17,7 @@ LEVELS = ["none", "patch", "minor", "major"]
 
 
 def git(*args):
-    return subprocess.run(
-        ["git", *args], check=True, capture_output=True, text=True
-    ).stdout
+    return subprocess.run(["git", *args], check=True, capture_output=True, text=True).stdout
 
 
 def parse(tag):
@@ -29,19 +27,13 @@ def parse(tag):
 
 def required_bump(version):
     level = 0
-    for commit in git("log", f"{prev_tag}..HEAD", "--format=%s%x1e%b%x1f").split(
-        "\x1f"
-    ):
+    for commit in git("log", f"{prev_tag}..HEAD", "--format=%s%x1e%b%x1f").split("\x1f"):
         if not commit.strip():
             continue
         subject, _, body = commit.strip().partition("\x1e")
         m = HEADER.match(subject)
         kind = m.group(1) if m else ""
-        breaking = (
-            bool(m and m.group(3))
-            or "BREAKING CHANGE" in body
-            or "BREAKING-CHANGE" in body
-        )
+        breaking = bool(m and m.group(3)) or "BREAKING CHANGE" in body or "BREAKING-CHANGE" in body
         if breaking:
             level = max(level, 2 if version[0] == 0 else 3)
         elif kind == "feat":
@@ -71,9 +63,7 @@ if not older:
 prev = older[-1]
 prev_tag = next(t for t in git("tag", "--list").split() if parse(t) == prev)
 need, got = required_bump(new), actual_bump(prev, new)
-print(
-    f"{prev_tag} -> {new_tag}: commits need {LEVELS[need]}, version bumps {LEVELS[got]}"
-)
+print(f"{prev_tag} -> {new_tag}: commits need {LEVELS[need]}, version bumps {LEVELS[got]}")
 if got < need:
     print(
         f"::error::{new_tag} is too small a bump for the commits since {prev_tag}; commits need at least a {LEVELS[need]} release"
