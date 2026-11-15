@@ -1,8 +1,8 @@
 # JobLoom
 
-JobLoom is a local-first, agent-friendly job discovery CLI by Sakina. Anonymous public search is provided through the `python-jobspy` package. Platform-native personalized feeds are isolated behind optional provider adapters.
+JobLoom searches job boards from the command line and keeps what it finds in a local SQLite database. Public search goes through [`python-jobspy`](https://github.com/speedyapply/JobSpy), which covers LinkedIn, Indeed and several other boards without an account. Personalized feeds, such as LinkedIn's recommended jobs, are optional and sit behind a separate adapter.
 
-JobLoom never auto-applies, submits forms, answers application questions, sends messages, or modifies a job-board account. Final review and submission stay with the user.
+It only reads. JobLoom never applies, fills in forms, answers screening questions, sends messages or changes anything on a job-board account; reviewing and applying stay with you. Output is JSON by default, so scripts and agents can use it as easily as a person can.
 
 ## Install
 
@@ -19,7 +19,7 @@ Current GitHub source install:
 uv tool install git+https://github.com/soffits/jobloom.git
 ```
 
-This project is not documented as installable from PyPI because it is not published there.
+It isn't on PyPI.
 
 ## Usage
 
